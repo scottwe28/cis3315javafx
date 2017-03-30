@@ -56,36 +56,61 @@ public class WeightOnPlanet extends Application {
         gridPane.add(tfMoon, 1, 1);
 
         // add other planets here later
-        
+        Label lbVenus = new Label("Venus");
+        lbVenus.setStyle("-fx-font-size: 18pt; -fx-text-fill: #0000ff;");
+        gridPane.add(lbVenus, 0, 2);
+
+        tfVenus = new TextField();
+        tfVenus.setEditable(false);
+        gridPane.add(tfVenus, 1, 2);
+
+        // TODO - add mars and jupiter
+        Label lbMars = new Label("Mars");
+        lbMars.setStyle("-fx-font-size: 18pt; -fx-text-fill: #0000ff;");
+        gridPane.add(lbMars, 0, 3);
+
+        tfMars = new TextField();
+        tfMars.setEditable(false);
+        gridPane.add(tfMars, 1, 3);
+
+        Label lbJupiter = new Label("Jupiter");
+        lbJupiter.setStyle("-fx-font-size: 18pt; -fx-text-fill: #0000ff;");
+        gridPane.add(lbJupiter, 0, 4);
+
+        tfJupiter = new TextField();
+        tfJupiter.setEditable(false);
+        gridPane.add(tfJupiter, 1, 4);
+
         Button btn = new Button();
         btn.setText("Calculate");
         btn.setStyle("-fx-font-size: 18pt; -fx-padding: 10; -fx-text-fill: #0000ff;");
         btn.setOnAction(e -> calculate());
-        
+
         HBox hBoxBtn = new HBox();
         hBoxBtn.setAlignment(Pos.CENTER);
         hBoxBtn.getChildren().add(btn);
-        
+
         BorderPane borderPane = new BorderPane();
         borderPane.setStyle("-fx-padding: 20");
         borderPane.setTop(hBoxTitle);
         borderPane.setCenter(gridPane);
         borderPane.setBottom(hBoxBtn);
 
-        Scene scene = new Scene(borderPane);
-
-        primaryStage.setTitle("Hello World!");
+        Scene scene = new Scene(borderPane, 400, 400);
+        primaryStage.setTitle("Astronomy Calculator");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void calculate(){
+    public void calculate() {
         double weight = Double.parseDouble(tfEarth.getText());
         double moonWeight = weight * GRAVITY_MOON;
         tfMoon.setText(String.format("%.2f", moonWeight));
-        // do other planets here...
+        tfVenus.setText(String.format("%.2f", weight * GRAVITY_VENUS));
+        tfMars.setText(String.format("%.2f", weight * GRAVITY_MARS));
+        tfJupiter.setText(String.format("%.2f", weight * GRAVITY_JUPITER));
     }
-    
+
     /**
      * @param args the command line arguments
      */
